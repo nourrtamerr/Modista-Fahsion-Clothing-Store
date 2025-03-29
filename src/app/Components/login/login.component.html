@@ -40,17 +40,18 @@
       </div>
     </div>
     <div >
-      <span>
-        <a routerLink='/register' >
-          <i class="fas fa fa-google fw-bold text-dark"></i>
-        </a>
+      <span style="cursor: pointer;">
+
+          <i class="fab fa-google fa-lg text-dark fs-3" (click)="googlelogin()"></i>
+
       </span>
-      <span class="ms-5">
+      <span class="ms-3">
         <a routerLink='/register' >
-          <i class="fas fa fa-facebook-f fw-bold text-dark"></i>
+          <i class="fab fa-facebook fa-lg text-dark fs-3"></i>
         </a>
+
       </span>
-      <p>Don't Have An Account?...<a routerLink='/register' >Create New Account</a></p>
+      <p class="my-2">Don't Have An Account?...<a routerLink='/register' >Create New Account</a></p>
     </div>
   </form>
 </div>

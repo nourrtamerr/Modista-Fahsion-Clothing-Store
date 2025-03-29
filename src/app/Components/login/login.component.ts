@@ -65,5 +65,34 @@ login(){
     }});
   }
 }
-
+// googlelogin(){
+//   this.userAuthService.externallogin("Google","http://localhost:4200/home").subscribe({
+//     next: (str:any) => {
+//       console.log('form submitted',str);
+//       if ( str.status=== 200) {
+//         this.router.navigate(['/']);
+//         this.err=null;
+//       }
+//     },
+//     error: (error) => {
+//       console.log('error',error);
+//       if (error.status === 400 && error.error.errors) {
+//         // Extract the error messages from the response and display them
+//         const errorMessages = [];
+//         for (const key in error.error.errors) {
+//           if (error.error.errors.hasOwnProperty(key)) {
+//             const messages = error.error.errors[key];
+//             errorMessages.push(...messages);
+//           }
+//         }
+//         // Display the error messages to the user
+//         this.err = errorMessages.join(' | ');
+//       }else{
+//         this.err=error.error;
+//       }
+//   }});
+// }
+googlelogin(){
+  this.userAuthService.externallogin("Google","http://localhost:4200/home");
+}
 }

@@ -11,7 +11,9 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class UserAuthService {
   islogged: BehaviorSubject<any> = new BehaviorSubject(false);
-  constructor(private http: HttpClient,private router:Router,private cookieservice:CookieService) { }
+  url:string = "";
+  constructor(private http: HttpClient,private router:Router,
+    private cookieservice:CookieService) { }
 
 register (reg:registerDTO):Observable<any> {
   this.islogged.next(true);
@@ -30,5 +32,11 @@ register (reg:registerDTO):Observable<any> {
   }
 getUserLogged():boolean{
   return this.islogged.getValue();
+}
+externallogin(provider:string,returnUrl:string){
+  this.islogged.next(true);
+  // return this.http.get('http://localhost:5248/api/Account/External-login',{params:{provider:prov,returnUrl:url},withCredentials:true,observe:'response'});
+  this.url=`http://localhost:5248/api/Account/External-login?provider=${encodeURIComponent(provider)}&returnUrl=${encodeURIComponent(returnUrl)}`;
+  window.location.href=this.url;
 }
 }
