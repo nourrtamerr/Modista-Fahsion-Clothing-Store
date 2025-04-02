@@ -36,6 +36,7 @@ export class OneProductComponent implements OnInit {
       error: (err) => console.log(err)
     });
   }
+  isInStock: boolean =true;
 
   addToWishList(ProdId: number) {
     if (this.isInWishList) {

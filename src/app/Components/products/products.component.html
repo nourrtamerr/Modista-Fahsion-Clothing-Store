@@ -170,6 +170,22 @@
                 </div>
 
 
+                <div class="filter-section">
+                    <div class="filter-header">
+                        <span>Availability</span>
+                    </div>
+                    <div class="filter-content">
+                        <div class="checkbox-item">
+                            <input type="checkbox" 
+                                   [checked]="IsInStock"
+                                   (change)="toggleStockFilter()">
+                            <label>In Stock Only</label>
+                        </div>
+                    </div>
+                </div>
+
+
+
 
 
 

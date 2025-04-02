@@ -189,7 +189,8 @@ AddToCart(productId: number, quantity: number): void {
   this.servise.AddToCart(productId, quantity).subscribe({
     next: (data) => {
       this.toastr.success('Added to cart successfully', 'Success'); // ✅ Working now!
-      console.log('Product added to cart:', data); 
+      console.log('Product added to cart:', data);
+      this.quantity=1;
     },
     error: (err) => {
       console.error('Error adding product to cart:', err); 
@@ -211,8 +212,12 @@ decreaseQuantity(): void {
 
 
 increaseQuantity(): void {
+
+  if(this.quantity<=this.product!.stock)
+  {
   this.quantity++;
-
-
+  console.log(this.product?.stock)
+  console.log(this.quantity)
+  }
 }}
 

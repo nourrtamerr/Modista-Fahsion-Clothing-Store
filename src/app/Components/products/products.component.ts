@@ -35,8 +35,12 @@ export class ProductsComponent implements OnInit {
   pageNum: number=1;
   totalPages: number=0;
   paginatedProducts: product[] = [];
-
+  IsInStock: boolean | null = null;
   currentSort: string = 'featured';
+  toggleStockFilter() {
+    this.IsInStock = !this.IsInStock;
+    this.filterProducts();
+}
 
   expandedSections = {
     category: true,
@@ -130,11 +134,18 @@ export class ProductsComponent implements OnInit {
     switch (sortOption) {
       case 'price-low-high':
         this.filteredProducts.sort((a, b) => a.price - b.price);
+        this.ApplyPagination();
+        console.log("entered low to high")
         break;
       case 'price-high-low':
+        console.log("entered high to low")
+
         this.filteredProducts.sort((a, b) => b.price - a.price);
+        this.ApplyPagination();
         break;
       default:
+        console.log("didnt enter")
+
         this.filterProducts();
         break;
     }
@@ -162,10 +173,10 @@ export class ProductsComponent implements OnInit {
 
       const subcategoryMatch = this.selectedSubCategories.length === 0 || 
         this.selectedSubCategories.includes(product.subcategoryid);
-
+        const stockMatch= !this.IsInStock || product.stock>0;
 
       
-      return sizeMatch && colorMatch && priceMatch && categoryMatch && subcategoryMatch;
+      return sizeMatch && colorMatch && priceMatch && categoryMatch && subcategoryMatch&&stockMatch;
     });
     if (this.currentSort !== 'featured') {
       this.sortProducts(this.currentSort);

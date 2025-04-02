@@ -36,6 +36,7 @@ export interface ReviewPost {
     comments: any[]
     category: string
     images: string[]
+    stock:number
   }
 
 

@@ -208,6 +208,11 @@
         height: 60px;
     }
 }
+.disabled {
+    pointer-events: none; /* Prevents clicks */
+    opacity: 0.5; /* Makes it look disabled */
+    cursor: not-allowed;
+}
 </style>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
 <div class="container mt-5">
@@ -271,13 +276,13 @@
                 <div class="d-flex align-items-center gap-2">
                     <fa-icon [icon]="minusIcon" 
                         class="icon-circle" 
-
+                        [ngClass]="{'disabled': quantity <= 1}" 
                         (click)="decreaseQuantity()">
                     </fa-icon>
                     <span class="px-2">{{quantity}}</span>
                     <fa-icon [icon]="plusIcon" 
                     class="icon-circle" 
-
+                    [ngClass]="{'disabled': quantity >= product!.stock}" 
                         (click)="increaseQuantity()">
                     </fa-icon>
                 </div>
