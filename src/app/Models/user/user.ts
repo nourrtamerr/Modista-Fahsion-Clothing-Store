@@ -19,3 +19,7 @@ export interface logDTO {
   password: string
   rememberme: boolean
 }
+export interface isAuthenticated {
+  isAuthenticated: boolean
+  userName?: string
+}

@@ -1,6 +1,6 @@
-@if(err != null){
+@if(err != null||errorMessage!=null){
   <div class="alert alert-danger">
-    {{ err }}
+    {{ err?? errorMessage }}
   </div>
 }
 <div class="container py-5">

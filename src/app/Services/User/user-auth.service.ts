@@ -1,6 +1,6 @@
 import { HttpClient} from '@angular/common/http';
 import { Injectable} from '@angular/core';
-import { logDTO, registerDTO} from '../../Models/user/user';
+import { isAuthenticated, logDTO, registerDTO} from '../../Models/user/user';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
@@ -30,8 +30,9 @@ register (reg:registerDTO):Observable<any> {
     return this.http.post<any>('http://localhost:5248/api/Account/logout',null,{withCredentials:true,observe:'response'})
     ;
   }
-getUserLogged():boolean{
-  return this.islogged.getValue();
+getUserLogged():Observable<isAuthenticated>{
+  // return this.islogged.getValue();
+  return this.http.get<isAuthenticated>("http://localhost:5248/api/Account/IsAuthenticated",{withCredentials:true});
 }
 externallogin(provider:string,returnUrl:string){
   this.islogged.next(true);

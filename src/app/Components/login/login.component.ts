@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { logDTO } from '../../Models/user/user';
 import { UserAuthService } from '../../Services/User/user-auth.service';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +13,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class LoginComponent implements OnInit{
   LoginForm!:  FormGroup;
+  errorMessage: string | null = null;
   log:logDTO ={
     usernameOrEmail:'',
     password:'',
@@ -23,7 +24,7 @@ export class LoginComponent implements OnInit{
   constructor(private fb: FormBuilder ,
     private userAuthService: UserAuthService,
     private http: HttpClient,
-    private router: Router) {}
+    private router: Router,private route: ActivatedRoute) {}
   ngOnInit(): void {
     this.LoginForm = this.fb.group({
       usernameOrEmail: ['', [Validators.required, Validators.email]],
@@ -34,6 +35,13 @@ export class LoginComponent implements OnInit{
       ]],
       rememberme: [false]
     });
+
+    this.route.queryParams.subscribe(params => {
+      if (params['error']) {
+        this.errorMessage = params['error'];
+        
+      }
+    })
   }
 login(){
   if (this.LoginForm.valid) {
