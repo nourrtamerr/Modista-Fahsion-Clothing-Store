@@ -9,8 +9,8 @@ export class CartService {
 
   constructor(private myClient:HttpClient) { }
 
-  URL="http://localhost:5248/api/OrderItems"
-
+  URL="http://lastclothinghabashi.runasp.net/api/OrderItems"
+  
 
   AddToCart( c:AddToCart){
     return this.myClient.post<any>(this.URL,c,{withCredentials:true,responseType: 'text' as 'json'})

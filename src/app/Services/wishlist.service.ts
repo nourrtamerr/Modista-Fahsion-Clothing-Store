@@ -7,7 +7,7 @@ import { HttpHeaders } from '@angular/common/http';
   providedIn: 'root'
 })
 export class WishlistService {
-  private apiUrl = 'http://localhost:5248/api/WishList'; 
+  private apiUrl = 'http://lastclothinghabashi.runasp.net/api/WishList'; 
   prdId: Number = 0; //  match .NET DTO
   // prdName: string = '';
   // prdImg: string = '';
