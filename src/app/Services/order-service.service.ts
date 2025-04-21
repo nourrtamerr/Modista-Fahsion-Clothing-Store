@@ -9,10 +9,10 @@ import { catchError, concatMap, EMPTY, map, Observable, switchMap, tap } from 'r
 export class OrderServiceService {
 
   constructor(private myclient: HttpClient) {}
-  getOrdersURL="https://lastclothinghabashi.runasp.net/api/Order"
-  getCartURL="https://lastclothinghabashi.runasp.net/api/Order/GetCart"
-   emptyCartURL="https://lastclothinghabashi.runasp.net/api/Order/EmptyCart"
-   confirmorderurl="https://lastclothinghabashi.runasp.net/api/Order"
+  getOrdersURL="http://lastclothinghabashi.runasp.net/api/Order"
+  getCartURL="http://lastclothinghabashi.runasp.net/api/Order/GetCart"
+   emptyCartURL="http://lastclothinghabashi.runasp.net/api/Order/EmptyCart"
+   confirmorderurl="http://lastclothinghabashi.runasp.net/api/Order"
   getCart():Observable<Cart> 
   {
    
