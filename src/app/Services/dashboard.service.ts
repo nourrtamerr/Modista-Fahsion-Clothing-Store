@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DashboardService {
-  private baseUrl = 'http://lastclothinghabashi.runasp.net/api'; 
+  private baseUrl = 'https://lastclothinghabashi.runasp.net/api'; 
 
   constructor(private http: HttpClient) {}
 
