@@ -72,6 +72,15 @@ export class ProductsComponent implements OnInit {
       next: (data) => this.Categories = data,
       error: (err) => console.log(err)
     });
+
+    if(this.selectedCategory){
+      this.myService.getSubCategoriesByCategory(this.selectedCategory).subscribe({
+        next: (data) => this.MatchedSubCategories = data,
+        error: (err) => console.log(err)
+      });
+    }
+    
+
   }
 
   toggleSection(section: keyof typeof this.expandedSections) {
