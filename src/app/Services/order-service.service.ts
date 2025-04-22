@@ -42,7 +42,7 @@ export class OrderServiceService {
 
 
 confirmorderstripe(billdetails: BillingDetails): Observable<url> {
-  const successurl = "http://localhost:4200/success";  // Success URL
+  const successurl = "https://clothing-store-last.vercel.app/success";  // Success URL
   const urlWithParams = `${this.confirmorderurl}?successurl=${encodeURIComponent(successurl)}`;  // Encode the URL parameter
 
   return this.myclient.post<url>(urlWithParams, billdetails, { withCredentials: true }).pipe(
