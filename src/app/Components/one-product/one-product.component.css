@@ -1,4 +1,4 @@
-.image-container {
+/* .image-container {
     position: relative;
     display: inline-block;
     overflow: hidden;
@@ -8,9 +8,36 @@
 
 .image-container img {
     width: 100%;
-    height:400px; 
+    height:400px;  
+
     display: block;
     
+} */
+
+.image-container {
+    position: relative;
+    width: 100%;
+    /* Aspect Ratio of 16:9 (example) */
+    padding-top: 150%; /* 9 / 16 * 100 = 56.25% (this gives you a 16:9 ratio) */
+    overflow: hidden;/* Ensures the image doesn't overflow the container */
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.image-container img {
+    position: absolute;  /* Position the image inside the container */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;  /* Ensures the image covers the container, potentially cropping it */
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
 }
 
 .overlay {
