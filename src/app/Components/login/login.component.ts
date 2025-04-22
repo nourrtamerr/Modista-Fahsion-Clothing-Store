@@ -103,4 +103,9 @@ login(){
 googlelogin(){
   this.userAuthService.externallogin("Google","http://localhost:4200/home");
 }
+
+
+facebooklogin(){
+  this.userAuthService.externallogin("Facebook","http://localhost:4200/home");
+}
 }
