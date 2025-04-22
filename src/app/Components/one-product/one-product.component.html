@@ -6,7 +6,7 @@
 
 <div class="card mb-4 border-0" style="width: 17rem;" [class.out-of-stock]="prodData.stock === 0">
 
-    <a [routerLink]="['/productDetails',prodData.code]" >
+    <a [routerLink]="['/ProductDetails',prodData.code]" >
         <div class="image-container">
             <img [src]="'/Images/' + prodData?.imageUrl" class="card-img-top" alt="...">
             <div class="overlay" *ngIf="prodData?.stock === 0">
