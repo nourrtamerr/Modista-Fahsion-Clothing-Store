@@ -9,7 +9,7 @@ export class OrderitemService {
 
   constructor(private myclient: HttpClient) { }
 
-  deleteURL="http://lastclothinghabashi.runasp.net/api/OrderItems"
+  deleteURL="https://lastclothinghabashi.runasp.net/api/OrderItems"
 
   deleteitem(id:number)
   {
