@@ -27,27 +27,24 @@
           <a class="nav-link" style="color: black;" href="#">About Us</a>
         </li>
         @if(!islogged!=undefined){
-          @if(!islogged?.isAuthenticated){
-            <li class="nav-item font" >
-              <a class="nav-link" style="color: black;" [routerLink]="['/login']"
-              routerLinkActive="active fw-bold">Login</a>
-            </li>
-            <li class="nav-item font color-black">
-              <a class="nav-link" style="color: black;" [routerLink]="['/register']"
-              routerLinkActive="active fw-bold" >Register</a>
-            </li>
-          
-          }
-          
-          @else {
-            <li class="nav-item font" >
-              <a class="nav-link" style="color: black;" [routerLink]="['/']"
-              routerLinkActive="active fw-bold">Hello {{islogged?.userName}}</a>
-            </li>
-            <li class="nav-item font">
-              <button class="nav-link" style="color: black;" (click)="logout()">Logout</button>
-            </li>
-          }
+        @if(!islogged?.isAuthenticated){
+          <li class="nav-item font" >
+            <a class="nav-link" style="color: black;" routerLink="['/login']"
+            routerLinkActive="active fw-bold">Login</a>
+          </li>
+          <li class="nav-item font color-black">
+            <a class="nav-link" style="color: black;" routerLink="['/register']" routerLinkActive="active fw-bold" >Register</a>
+          </li>
+        
+        }@else {
+          <li class="nav-item font" >
+            <a class="nav-link" style="color: black;" routerLink="['/']"
+            routerLinkActive="active fw-bold">Hello {{islogged?.userName}}</a>
+          </li>
+        <li class="nav-item font">
+          <button class="nav-link" style="color: black;" (click)="logout()">Logout</button>
+        </li>
+        }
       }
       </ul>
 
