@@ -101,11 +101,11 @@ login(){
 //   }});
 // }
 googlelogin(){
-  this.userAuthService.externallogin("Google","http://localhost:4200/home");
+  this.userAuthService.externallogin("Google","https://clothing-store-last.vercel.app/home");
 }
 
 
 facebooklogin(){
-  this.userAuthService.externallogin("Facebook","http://localhost:4200/home");
+  this.userAuthService.externallogin("Facebook","https://clothing-store-last.vercel.app/home");
 }
 }
