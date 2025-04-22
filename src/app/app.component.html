@@ -15,6 +15,8 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
+
+
       <ul class="navbar-nav gap-5 mx-auto w-100 d-flex justify-content-center">
         <li class="nav-item font">
           <a class="nav-link" routerLink="/home" routerLinkActive="active-link" style="color: black;" aria-current="page" >Home</a>
@@ -26,13 +28,16 @@
         <li class="nav-item font">
           <a class="nav-link" routerLink="/about" routerLinkActive="active-link"  style="color: black;" aria-current="page" >About Us</a>
         </li>
-      </ul>
       
+       
+      </ul>
+
+
       <ul class="navbar-nav ms-auto d-flex flex-row gap-3">
-        @if(islogged?.userName=="mahmodmohammed"||islogged?.userName=="MalakEmad")
+        @if(islogged?.userName=="mahmodmohammed"||islogged?.userName=="mahmodhamed")
         {
           <li class="nav-item font color-black">
-            <a class="nav-link"  style="color: black;" routerLink="/admin">
+            <a routerLinkActive="active-link" class="nav-link"  style="color: black;" routerLink="/admin">
               <i class="fa-solid fa-user-tie" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
@@ -47,17 +52,17 @@
         }
         @else {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/orders">
+            <a routerLinkActive="active-link" class="nav-link" routerLink="/orders">
               <i class="fa-solid fa-bag-shopping" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/wishlist" class="nav-link" >
+            <a routerLinkActive="active-link" routerLink="/wishlist" class="nav-link" >
               <i  class="fa-regular fa-heart" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/cart">
+            <a routerLinkActive="active-link" class="nav-link" routerLink="/cart">
               <i class="fa-solid fa-cart-shopping" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
