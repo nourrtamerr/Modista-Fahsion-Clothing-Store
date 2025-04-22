@@ -21,7 +21,7 @@ export class DashboardService {
     
     
     getAllOrders(): Observable<any[]> {
-        return this.http.get<any[]>(`${this.baseUrl}/Order`,{withCredentials:true});
+        return this.http.get<any[]>(`${this.baseUrl}/Order/All`,{withCredentials:true});
     }
     
     getAllCategories(): Observable<any[]> {
