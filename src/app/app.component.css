@@ -133,6 +133,7 @@
 
 .active-link {
     position: relative;
+    display: inline-block;
 }
 
 .active-link::after {
@@ -143,6 +144,9 @@
     background-color: rgb(215, 3, 3);
     position: absolute;
     bottom: 0;
+    left: 50%; /* Moves the starting point to the center */
+    transform: translateX(-50%); 
+
     
 }
 

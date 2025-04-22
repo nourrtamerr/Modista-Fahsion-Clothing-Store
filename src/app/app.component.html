@@ -37,7 +37,7 @@
         @if(islogged?.userName=="mahmodmohammed"||islogged?.userName=="mahmodhamed")
         {
           <li class="nav-item font color-black">
-            <a class="nav-link"  style="color: black;" routerLink="/admin">
+            <a routerLinkActive="active-link" class="nav-link"  style="color: black;" routerLink="/admin">
               <i class="fa-solid fa-user-tie" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
@@ -52,17 +52,17 @@
         }
         @else {
           <li class="nav-item">
-            <a class="nav-link" routerLink="/orders">
+            <a routerLinkActive="active-link" class="nav-link" routerLink="/orders">
               <i class="fa-solid fa-bag-shopping" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a routerLink="/wishlist" class="nav-link" >
+            <a routerLinkActive="active-link" routerLink="/wishlist" class="nav-link" >
               <i  class="fa-regular fa-heart" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" routerLink="/cart">
+            <a routerLinkActive="active-link" class="nav-link" routerLink="/cart">
               <i class="fa-solid fa-cart-shopping" style="font-size: 1.3rem;color:black"></i>
             </a>
           </li>
