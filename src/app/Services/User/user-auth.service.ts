@@ -1,43 +1,68 @@
-import { HttpClient} from '@angular/common/http';
-import { Injectable} from '@angular/core';
-import { isAuthenticated, logDTO, registerDTO} from '../../Models/user/user';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from '@angular/core';
+import { isAuthenticated, logDTO, registerDTO } from '../../Models/user/user';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { CookieService } from 'ngx-cookie-service';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserAuthService {
-  islogged: BehaviorSubject<any> = new BehaviorSubject(false);
-  url:string = "";
-  constructor(private http: HttpClient,private router:Router,
-    private cookieservice:CookieService) { }
+  private authStatus = new BehaviorSubject<isAuthenticated>({ isAuthenticated: false, userName: '' });
+  authStatus$ = this.authStatus.asObservable();
 
-register (reg:registerDTO):Observable<any> {
-  this.islogged.next(true);
-  return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/register',reg,{withCredentials:true,observe:'response'})
-}
-  login (log:logDTO):Observable<any> {
-    localStorage.setItem('userNameOrEmail',log.usernameOrEmail);
-    this.islogged.next(true);
-    return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/login',log,{withCredentials:true,observe:'response'})
+  // private apiUrl = 'http://localhost:5248/api/Account';
+
+  constructor(private http: HttpClient, private router: Router) {}
+
+  register(reg: registerDTO): Observable<any> {
+    // return this.http.post<any>(`${this.apiUrl}/register`, reg, {
+    //   withCredentials: true,
+    //   observe: 'response'
+    // });
+    return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/register',reg,{withCredentials:true,observe:'response'})
   }
-  logout () {
-    localStorage.removeItem('userNameOrEmail');
-    this.islogged.next(false);
-    return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/logout',null,{withCredentials:true,observe:'response'})
-    ;
+
+  login(log: logDTO): Observable<any> {
+    // return this.http.post<any>(`${this.apiUrl}/login`, log, {
+    //   withCredentials: true,
+    //   observe: 'response'
+    // }).pipe(
+    //   // after successful login, update authStatus
+    //   tap(() => this.refreshAuthStatus())
+    // );
+     return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/login', log, {
+      withCredentials: true,
+      observe: 'response'
+    }).pipe(
+      // after successful login, update the current user's auth state by fetching it from the server.
+      tap(() => this.refreshAuthStatus())
+    );
   }
-getUserLogged():Observable<isAuthenticated>{
-  // return this.islogged.getValue();
-  return this.http.get<isAuthenticated>("https://lastclothinghabashi.runasp.net/api/Account/IsAuthenticated",{withCredentials:true});
-}
-externallogin(provider:string,returnUrl:string){
-  this.islogged.next(true);
-  // return this.http.get('http://localhost:5248/api/Account/External-login',{params:{provider:prov,returnUrl:url},withCredentials:true,observe:'response'});
-  this.url=`https://lastclothinghabashi.runasp.net/api/Account/External-login?provider=${encodeURIComponent(provider)}&returnUrl=${encodeURIComponent(returnUrl)}`;
-  window.location.href=this.url;
-}
+
+  logout(): Observable<any> {
+    return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/logout', null, {
+      withCredentials: true,
+      observe: 'response'
+    }).pipe(
+      tap(() => this.authStatus.next({ isAuthenticated: false, userName: '' }))
+    );
+  }
+
+  refreshAuthStatus(): void {
+    this.getUserLogged().subscribe({
+      next: (data) => this.authStatus.next(data),
+      error: () => this.authStatus.next({ isAuthenticated: false, userName: '' })
+    });
+  }
+
+  getUserLogged(): Observable<isAuthenticated> {
+    return this.http.get<isAuthenticated>("https://lastclothinghabashi.runasp.net/api/Account/IsAuthenticated", { withCredentials: true });
+  }
+
+  externallogin(provider: string, returnUrl: string) {
+    const url = `https://lastclothinghabashi.runasp.net/api/Account/External-login?provider=${encodeURIComponent(provider)}&returnUrl=${encodeURIComponent(returnUrl)}`;
+    window.location.href = url;
+  }
 }
