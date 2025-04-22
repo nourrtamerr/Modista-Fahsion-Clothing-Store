@@ -8,7 +8,7 @@
 
     <a [routerLink]="['/ProductDetails',prodData.code]" >
         <div class="image-container">
-            <img [src]="'/Images/' + prodData?.imageUrl" class="card-img-top" alt="...">
+            <img [src]="'/Images/' + prodData?.imageUrl" class="card-img-top " alt="...">
             <div class="overlay" *ngIf="prodData?.stock === 0">
                 <span class="out-of-stock-text">Out of Stock</span>
             </div>
