@@ -9,7 +9,7 @@ export class CartService {
 
   constructor(private myClient:HttpClient) { }
 
-  URL="https://lastclothinghabashi.runasp.net/api/OrderItems"
+  URL="https://modistafashion.runasp.net/api/OrderItems"
   
 
   AddToCart( c:AddToCart){

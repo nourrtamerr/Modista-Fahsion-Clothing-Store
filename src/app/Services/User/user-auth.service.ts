@@ -46,7 +46,7 @@ export class UserAuthService {
   }
 
   logout(): Observable<any> {
-    return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/logout', null, {
+    return this.http.post<any>('https://modistafashion.runasp.net/api/Account/logout', null, {
       withCredentials: true,
       observe: 'response'
     }).pipe(
@@ -62,11 +62,11 @@ export class UserAuthService {
   }
 
   getUserLogged(): Observable<isAuthenticated> {
-    return this.http.get<isAuthenticated>("https://lastclothinghabashi.runasp.net/api/Account/IsAuthenticated", { withCredentials: true });
+    return this.http.get<isAuthenticated>("https://modistafashion.runasp.net/api/Account/IsAuthenticated", { withCredentials: true });
   }
 
   externallogin(provider: string, returnUrl: string) {
-    const url = `https://lastclothinghabashi.runasp.net/api/Account/External-login?provider=${encodeURIComponent(provider)}&returnUrl=${encodeURIComponent(returnUrl)}`;
+    const url = `https://modistafashion.runasp.net/api/Account/External-login?provider=${encodeURIComponent(provider)}&returnUrl=${encodeURIComponent(returnUrl)}`;
     window.location.href = url;
   }
 }
