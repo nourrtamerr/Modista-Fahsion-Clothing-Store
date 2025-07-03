@@ -101,11 +101,11 @@ login(){
 //   }});
 // }
 googlelogin(){
-  this.userAuthService.externallogin("Google","https://clothing-store-last.vercel.app/home");
+  this.userAuthService.externallogin("Google","https://modistaclothingstore.vercel.app/home");
 }
 
 
 facebooklogin(){
-  this.userAuthService.externallogin("Facebook","https://clothing-store-last.vercel.app/home");
+  this.userAuthService.externallogin("Facebook","https://modistaclothingstore.vercel.app/home");
 }
 }
