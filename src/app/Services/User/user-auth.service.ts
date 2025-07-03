@@ -21,7 +21,7 @@ export class UserAuthService {
     //   withCredentials: true,
     //   observe: 'response'
     // });
-    return this.http.post<any>('https://modistafashion.runasp.net/api/Account/register',reg,{withCredentials:true,observe:'response'})
+    return this.http.post<any>('https://modistafashionn.runasp.net/api/Account/register',reg,{withCredentials:true,observe:'response'})
   }
 
 
