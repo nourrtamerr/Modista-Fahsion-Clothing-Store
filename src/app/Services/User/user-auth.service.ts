@@ -21,7 +21,7 @@ export class UserAuthService {
     //   withCredentials: true,
     //   observe: 'response'
     // });
-    return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/register',reg,{withCredentials:true,observe:'response'})
+    return this.http.post<any>('https://modistafashion.runasp.net/api/Account/register',reg,{withCredentials:true,observe:'response'})
   }
 
 
@@ -36,7 +36,7 @@ export class UserAuthService {
     // );
   login(log: logDTO): Observable<any> {
 
-     return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/login', log, {
+     return this.http.post<any>('https://modistafashion.runasp.net/api/Account/login', log, {
       withCredentials: true,
       observe: 'response'
     }).pipe(
