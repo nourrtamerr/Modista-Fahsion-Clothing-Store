@@ -1,4 +1,4 @@
-
+<!-- 
 <style>
 
 </style>
@@ -15,9 +15,7 @@
         </div>
     </a>
 
-    <!-- @if(prodData.stock === 0){
-        <div class="out-of-stock-label">Out of Stock</div>
-    } -->
+
 
     <div class="d-flex flex-column">
         <div class="d-flex mt-2">
@@ -31,7 +29,6 @@
         </div>
 
             <span class="mt-1 fw-bold">${{prodData?.price}}</span>
-            <!-- <span class="ms-auto"><i class="fa-solid fa-cart-plus"></i></span> -->
 
 
 
@@ -47,5 +44,82 @@
 
 
 
+    </div>
+</div> -->
+
+
+
+<div class="card mb-4 border-0 product-card" style="width: 17rem;" [class.out-of-stock]="prodData.stock === 0">
+    <div class="product-image-container">
+        <a [routerLink]="['/ProductDetails',prodData.code]">
+            <img [src]="'/Images/' + prodData?.imageUrl" class="card-img-top" alt="...">
+        </a>
+        <div class="wishlist-icon">
+            <i [class]="isInWishList ? 'fa-solid fa-heart text-danger' : 'fa-regular fa-heart'"
+               (click)="addToWishList(prodData.code)"></i>
+        </div>
+        <div class="cart-overlay" 
+             [class.disabled]="prodData.stock === 0"
+             (click)="prodData.stock > 0 && openQuickView()">
+            <i class="fa-solid fa-cart-plus me-2"></i>
+            {{prodData.stock === 0 ? 'Out of Stock' : 'Quick Add'}}
+
+             
+        </div>
+        @if(prodData.stock === 0){
+            <div class="out-of-stock-label">Out of Stock</div>
+        }
+    </div>
+
+    <div class="d-flex flex-column p-2">
+        <span class="product-name">{{prodData?.name}}</span>
+        <span class="product-price">${{prodData?.price}}</span>
+    </div>
+</div>
+
+<!-- Quick View Modal -->
+<div class="quick-view-modal" [class.show]="isQuickViewOpen">
+    <div class="quick-view-content">
+        <div class="quick-view-header">
+            <button class="close-btn" (click)="closeQuickView()">×</button>
+        </div>
+        <div class="quick-view-body">
+            <div class="product-image">
+                <img [src]="'/Images/' + prodData?.imageUrl" alt="...">
+            </div>
+            <div class="product-options">
+                <h5 class="product-title mb-2">{{prodData?.name}}</h5>
+                <h6 class="product-price mb-4">${{prodData?.price}}</h6>
+                <div class="size-selection">
+                    <label>Size:</label>
+                    <div class="options-grid">
+                        @for(size of getEnumValues(SizeEnum); track size){
+                            <div class="option-item" 
+                                 [class.selected]="selectedSize === size"
+                                 [class.disabled]="!isSizeAvailable(size)"
+                                 (click)="isSizeAvailable(size) && selectSize(size)">
+                                {{SizeEnum[size]}}
+                            </div>
+                        }
+                    </div>
+                </div>
+                <div class="color-selection">
+                    <label>Color:</label>
+                    <div class="options-grid">
+                        @for(color of getEnumValues(ColorEnum); track color){
+                            <div class="option-item"
+                                 [class.selected]="selectedColor === color"
+                                 [class.disabled]="!isColorAvailable(color)"
+                                 (click)="isColorAvailable(color) && selectColor(color)">
+                                {{ColorEnum[color]}}
+                            </div>
+                        }
+                    </div>
+                </div>
+                <button class="btn btn-dark w-100" [disabled]="!selectedSize || !selectedColor" (click)="addToCartWithOptions()">
+                    Add to Cart
+                </button>
+            </div>
+        </div>
     </div>
 </div>

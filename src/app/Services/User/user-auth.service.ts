@@ -24,7 +24,9 @@ export class UserAuthService {
     return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/register',reg,{withCredentials:true,observe:'response'})
   }
 
-  login(log: logDTO): Observable<any> {
+
+
+  
     // return this.http.post<any>(`${this.apiUrl}/login`, log, {
     //   withCredentials: true,
     //   observe: 'response'
@@ -32,6 +34,8 @@ export class UserAuthService {
     //   // after successful login, update authStatus
     //   tap(() => this.refreshAuthStatus())
     // );
+  login(log: logDTO): Observable<any> {
+
      return this.http.post<any>('https://lastclothinghabashi.runasp.net/api/Account/login', log, {
       withCredentials: true,
       observe: 'response'
