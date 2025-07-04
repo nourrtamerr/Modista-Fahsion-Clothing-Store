@@ -9,7 +9,7 @@ import { CookieService } from 'ngx-cookie-service';
   providedIn: 'root'
 })
 export class UserAuthService {
-  private authStatus = new BehaviorSubject<isAuthenticated>({ isAuthenticated: false, userName: '' });
+  private authStatus = new BehaviorSubject<isAuthenticated>({ isAuthenticated: false, userName: '', role: '' });
   authStatus$ = this.authStatus.asObservable();
 
   // private apiUrl = 'http://localhost:5248/api/Account';
@@ -50,14 +50,14 @@ export class UserAuthService {
       withCredentials: true,
       observe: 'response'
     }).pipe(
-      tap(() => this.authStatus.next({ isAuthenticated: false, userName: '' }))
+      tap(() => this.authStatus.next({ isAuthenticated: false, userName: '', role: '' }))
     );
   }
 
   refreshAuthStatus(): void {
     this.getUserLogged().subscribe({
       next: (data) => this.authStatus.next(data),
-      error: () => this.authStatus.next({ isAuthenticated: false, userName: '' })
+      error: () => this.authStatus.next({ isAuthenticated: false, userName: '', role: '' })
     });
   }
 

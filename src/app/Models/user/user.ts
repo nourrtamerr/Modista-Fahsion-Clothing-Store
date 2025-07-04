@@ -22,4 +22,5 @@ export interface logDTO {
 export interface isAuthenticated {
   isAuthenticated: boolean
   userName?: string
+  role?: string
 }

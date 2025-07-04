@@ -40,4 +40,8 @@ export class AppComponent  implements OnInit{
       }
   })
   }
+
+  isAdmin(): boolean {
+    return this.islogged?.role === 'Admin';
+  }
   }

@@ -34,7 +34,7 @@
 
 
       <ul class="navbar-nav ms-auto d-flex flex-row gap-3">
-        @if(islogged?.userName=="mahmodmohammed"||islogged?.userName=="mahmodhamed")
+        @if(isAdmin())
         {
           <li class="nav-item font color-black">
             <a routerLinkActive="active-link" class="nav-link"  style="color: black;" routerLink="/admin">

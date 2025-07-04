@@ -9,7 +9,7 @@ import { isAuthenticated } from '../../Models/user/user';
   styleUrl: './nav-bar.component.css'
 })
 export class NavBarComponent implements OnInit {
-  islogged: isAuthenticated = { isAuthenticated: false, userName: '' };
+  islogged: isAuthenticated = { isAuthenticated: false, userName: '', role: '' };
 
   constructor(private userAuthService: UserAuthService, private router: Router) {}
 
@@ -30,5 +30,9 @@ export class NavBarComponent implements OnInit {
       },
       error: (err) => console.error('Logout failed', err)
     });
+  }
+
+  isAdmin(): boolean {
+    return this.islogged?.role === 'Admin';
   }
 }
