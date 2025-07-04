@@ -11,6 +11,7 @@ import { ProductsComponent } from './Components/products/products.component';
 import { WishlistComponent } from './Components/wishlist/wishlist.component';
 import { AboutComponent } from './Components/about/about.component';
 import { DashBoardComponent } from './Components/dash-board/dash-board.component';
+import { AdminProductsComponent } from './Components/AdminPages/admin-products/admin-products.component';
 
 export const routes: Routes = [
   { path: 'register',component:RegisterComponent},
@@ -25,6 +26,21 @@ export const routes: Routes = [
   {path:"products", component:ProductsComponent},
   {path:"wishlist", component:WishlistComponent},
   {path:"about", component:AboutComponent},
-  {path:"admin", component:DashBoardComponent},
+
+
+
+  // {path:"admin", component:DashBoardComponent},
+  // {path:"adminProducts", component:AdminProductsComponent},
+
+
+  {
+    path:"admin",
+    component: DashBoardComponent,
+    children:[
+      {path:'', redirectTo:'dashboard', pathMatch:'full'},
+      {path:'dashboard', component:DashBoardComponent},
+      {path:'products', component:AdminProductsComponent}
+    ]
+  }
 
 ];

@@ -1,0 +1,148 @@
+<div class="admin-products-container">
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="fw-bold">Products</h2>
+    <button class="btn btn-primary" (click)="openCreateProduct()"><i class="fas fa-plus"></i> Create New Product</button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover align-middle shadow-sm rounded">
+      <thead class="table-light">
+        <tr>
+            <th>Code</th>
+            <th>Name</th>
+            <th>Image</th>
+          <th>Price</th>
+          <th>Category</th>
+          <th>Stock</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+            <td>{{ product.code }}</td>
+            <td>{{ product.name }}</td>
+            <td>
+              <img [src]="'/Images/' + product?.imageUrl" alt="Product Image"  style="width: 40px; height: 40px; object-fit: cover; border: 1px solid #eee;" />
+            </td>
+          <td>{{ product.price | currency }}</td>
+          <td>{{ getCatName(product.categoryid) || '-' }}</td>
+          <td>{{ product.stock ?? '-' }}</td>
+          <td>
+            <button class="btn btn-sm text-info me-2" (click)="openEditProduct(product)"><i class="fas fa-eye"></i></button>
+            <button class="btn btn-sm text-warning me-2" (click)="openEditProduct(product)"><i class="fas fa-edit"></i></button>
+            <button class="btn btn-sm text-danger " (click)="openDeleteProduct(product)"><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+        <tr *ngIf="products.length === 0">
+          <td colspan="7" class="text-center text-muted">No products found.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Product Modal (Create/Edit) -->
+<div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form (ngSubmit)="onSubmitProduct()" *ngIf="modalMode !== 'delete'">
+        <div class="modal-header">
+          <h5 class="modal-title" id="productModalLabel">
+            {{ modalMode === 'create' ? 'Create New Product' : 'Edit Product' }}
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <!-- All fields except id -->
+          <div class="mb-3">
+            <label class="form-label">Code</label>
+            <input [(ngModel)]="modalProduct.code" name="code" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Name</label>
+            <input [(ngModel)]="modalProduct.name" name="name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Price</label>
+            <input [(ngModel)]="modalProduct.price" name="price" type="number" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select [(ngModel)]="modalProduct.categoryid" name="categoryid" class="form-control" required (change)="onCategoryChange(modalProduct.categoryid)">
+              <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">SubCategory</label>
+            <select [(ngModel)]="modalProduct.subcategoryid" name="subcategoryid" class="form-control" required>
+              <option *ngFor="let subcat of matchedSubcat" [value]="subcat.id">{{subcat.name}}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Stock</label>
+            <input [(ngModel)]="modalProduct.stock" name="stock" type="number" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Main Image</label>
+            <input type="file" (change)="onImageChange($event, 'main')" class="form-control">
+            <img *ngIf="modalProduct.imageUrl" [src]="modalProduct.imageUrl" alt="Main Image" style="width:60px; margin-top:8px;">
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Additional Images</label>
+            <input type="file" (change)="onImageChange($event, 'additional')" class="form-control" multiple>
+            <div class="d-flex flex-wrap mt-2">
+              <img *ngFor="let img of modalProduct.productAdditionalImages" [src]="img" alt="Additional" style="width:40px; margin-right:5px;">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="submit" class="btn btn-primary">{{ modalMode === 'create' ? 'Create' : 'Save Changes' }}</button>
+        </div>
+      </form>
+      <!-- Delete Confirmation -->
+      <div *ngIf="modalMode === 'delete'">
+        <div class="modal-header">
+          <h5 class="modal-title">Delete Product</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          <p>Are you sure you want to delete <b>{{modalProduct.name}}</b>?</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="onDeleteProductConfirmed()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

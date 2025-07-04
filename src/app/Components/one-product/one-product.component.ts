@@ -215,7 +215,7 @@ isColorAvailable(color: number): boolean {
 
   addToCartWithOptions() {
     if (this.selectedSize && this.selectedColor) {
-      this.AddToCart(this.prodData.code, 1);
+      this.AddToCart(this.prodData.code!, 1);
       this.closeQuickView();
     }
   }

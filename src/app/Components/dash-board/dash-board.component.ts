@@ -2,11 +2,14 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 import { Chart } from 'chart.js/auto';
 import { CommonModule } from '@angular/common';
 import { DashboardService } from '../../Services/dashboard.service';
+import { AdminSidebarComponent } from "../admin-sidebar/admin-sidebar.component";
+import { AdminProductsComponent } from "../AdminPages/admin-products/admin-products.component";
+import { RouterModule, RouterOutlet } from '@angular/router';
 // import { DashboardService } from '../services/dashboard.service'; // Import the service
 
 @Component({
   selector: 'app-dash-board',
-  imports: [CommonModule],
+  imports: [CommonModule, AdminSidebarComponent, AdminProductsComponent, RouterModule, RouterOutlet],
   templateUrl: './dash-board.component.html',
   styleUrl: './dash-board.component.css'
 })
@@ -124,20 +127,7 @@ export class DashBoardComponent implements AfterViewInit {
           },
       });
 
-    // this.dashboardService.getAllProducts().subscribe(response => {
-    //   console.log("API Response:", response); 
-  
-    //   if (response && Array.isArray(response)) {
-    //     this.productCount = response.length;
-    //     console.log("Product Count:", this.productCount); 
-    //     this.statistics[2].value = this.productCount;
-    //    // this.createProductChart();
-    //   } else {
-    //     console.error("Invalid response format", response);
-    //   }
-    // }, error => {
-    //   console.error("API Error:", error);
-    // });
+
   }
 
  fetchCategoriesStats() {
@@ -155,64 +145,8 @@ export class DashBoardComponent implements AfterViewInit {
     });
 
 
-    // this.dashboardService.getAllCategories().subscribe(response => {
-    //   console.log("API Response (Categories):", response);
-  
-    //   if (response && Array.isArray(response)) {
-    //     this.categoryCount = response.length;
-    //     console.log("Category Count:", this.categoryCount); 
-    //     this.statistics[4].value = this.categoryCount; 
-    //    // this.createCategoriesChart(); 
-    //   } else {
-    //     console.error("Invalid response format for categories", response);
-    //   }
-    // }, error => {
-    //   console.error("API Error (Categories):", error);
-    // });
  }
 
-
-  // createCategoryProductChart(categoryNames: string[], productCounts: number[]) {
-  //   new Chart(this.CategoriesChartCanvas.nativeElement, {
-  //     type: 'bar',
-  //     data: {
-  //       labels: categoryNames, 
-  //       datasets: [{
-  //         label: 'Number of Products',
-  //         data: productCounts, //  products per category
-  //         backgroundColor: 'rgba(54, 162, 235, 0.6)',
-  //         borderColor: 'rgba(54, 162, 235, 1)',
-  //         borderWidth: 1
-  //       }]
-  //     },
-  //     options: {
-  //       responsive: true,
-  //       maintainAspectRatio: false,
-  //       scales: {
-  //         x: {
-  //           title: {
-  //             display: true,
-  //             text: 'Categories',
-  //             font: { size: 14 }
-  //           },
-  //           ticks: {
-  //             autoSkip: false,
-  //             maxRotation: 45,
-  //             minRotation: 45
-  //           }
-  //         },
-  //         y: {
-  //           title: {
-  //             display: true,
-  //             text: 'Number of Products',
-  //             font: { size: 14 }
-  //           },
-  //           beginAtZero: true
-  //         },
-  //       },
-  //     },
-  //   });
-  // }
   createCategoryProductChart(categoryNames: string[], productCounts: number[]) {
     new Chart(this.CategoriesChartCanvas.nativeElement, {
       type: 'pie',
@@ -278,24 +212,7 @@ export class DashBoardComponent implements AfterViewInit {
       }
     }, 
       });
-    // this.dashboardService.getAllCategories().subscribe(response => {
-    //   console.log("API Response (Categories):", response);
-  
-    //   if (response && Array.isArray(response)) {
-        
-    //     const categoryNames = response.map(category => category.name);
-    //     const productCounts = response.map(category => category.products.length);
-  
-    //     console.log("Category Names:", categoryNames);
-    //     console.log("Product Counts per Category:", productCounts);
-  
-    //     this.createCategoryProductChart(categoryNames, productCounts);
-    //   } else {
-    //     console.error("Invalid response format for categories", response);
-    //   }
-    // }, error => {
-    //   console.error("API Error (Categories):", error);
-    // });
+   
   }
   
 
@@ -327,24 +244,7 @@ export class DashBoardComponent implements AfterViewInit {
 
 
   fetchProductOrderStats() {
-    // this.dashboardService.getAllProducts().subscribe(response => {
-    //   console.log("API Response (Products):", response);
-  
-    //   if (response && Array.isArray(response)) {
-    //     // Extract product names and count their order items
-    //     const productNames = response.map(product => product.name);
-    //     const orderCounts = response.map(product => product.orderItems ? product.orderItems.length : 0);
-  
-    //     console.log("Product Names:", productNames);
-    //     console.log("Order Counts per Product:", orderCounts);
-  
-    //     this.createProductOrderChart(productNames, orderCounts);
-    //   } else {
-    //     console.error("Invalid response format for products", response);
-    //   }
-    // }, error => {
-    //   console.error("API Error (Products):", error);
-    // });
+
 
     this.dashboardService.getAllProducts().subscribe({
       next:(response) => {
@@ -433,7 +333,11 @@ export class DashBoardComponent implements AfterViewInit {
 
 
   }
-  
+  selectedTab: string = 'admin';
+
+onTabChange(tab: string) {
+  this.selectedTab = tab;
+}
   
 }
 

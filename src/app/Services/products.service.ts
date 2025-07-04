@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { product, products } from '../Models/product';
+import { category, product, products, subcategory } from '../Models/product';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -13,6 +13,18 @@ export class ProductsService {
 
   getAllProducts(): Observable<product[]> {
     return this.myClinet.get<product[]>(this.URL, {withCredentials:true})
+  }
+
+  CreateProduct(NewProduct:product):Observable<product>{
+    return this.myClinet.post<product>(this.URL, NewProduct, {withCredentials:true})
+  }
+
+  EditProduct(id:number,updatedProductDto:product):Observable<product>{
+    return this.myClinet.put<product>(`${this.URL}/${id}`,updatedProductDto, {withCredentials:true})
+  }
+
+  DeleteProduct(id: number): Observable<any> {
+    return this.myClinet.delete(`${this.URL}/${id}`, {withCredentials: true});
   }
 
   getSubCategoriesByCategory(categoryId: number): Observable<any> {
@@ -28,4 +40,12 @@ export class ProductsService {
     return this.myClinet.get(`${this.URL}/${code}`,{withCredentials:true})
   }
 
+
+  GetCategoryById(id:number):Observable<category>{
+    return this.myClinet.get<category>(`${this.URL}/GetCategoryById/${id}`,{withCredentials:true})
+  }
+
+  GetSubCategoryById(id:number):Observable<subcategory>{
+    return this.myClinet.get<subcategory>(`${this.URL}/GetSubCategoryById/${id}`,{withCredentials:true})
+  }
 }

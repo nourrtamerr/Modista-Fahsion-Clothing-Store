@@ -94,3 +94,14 @@
     }
   }
 }
+
+
+.admin-dashboard {
+  display: flex;
+}
+
+.main-content {
+  margin-left: 220px; /* Match the sidebar width */
+  padding: 30px;
+  width: 100%;
+}

@@ -29,6 +29,8 @@ export class AppComponent  implements OnInit{
 
     this.userAuthService.refreshAuthStatus();
   }
+
+  
   logout(){
     this.userAuthService.logout().subscribe({
       next: (str) => {
