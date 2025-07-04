@@ -65,12 +65,18 @@ login(){
       next: (str) => {
         console.log('form submitted',str);
         if ( str.status=== 200) {
-          if(this.isAdmin()){
-            this.router.navigate(['/admin']);
-          }
-          else{
-            this.router.navigate(['/home']);
-          }
+          // Wait for the refreshed auth status, then navigate based on role
+          this.userAuthService.refreshAuthStatus();
+          const sub = this.userAuthService.authStatus$.subscribe(user => {
+            if(user && user.isAuthenticated) {
+              if(user.role === 'Admin') {
+                this.router.navigate(['/admin']);
+              } else {
+                this.router.navigate(['/home']);
+              }
+              sub.unsubscribe(); // Prevent memory leaks
+            }
+          });
           this.err=null;
         }
       },
