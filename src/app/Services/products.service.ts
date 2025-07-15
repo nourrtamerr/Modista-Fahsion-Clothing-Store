@@ -19,8 +19,16 @@ export class ProductsService {
     return this.myClinet.post<product>(this.URL, NewProduct, {withCredentials:true})
   }
 
+  UploadProductWithImage(formData: FormData): Observable<any> {
+    return this.myClinet.post(`${this.URL}/upload`, formData, {withCredentials:true});
+  }
+
   EditProduct(id:number,updatedProductDto:product):Observable<product>{
     return this.myClinet.put<product>(`${this.URL}/${id}`,updatedProductDto, {withCredentials:true})
+  }
+
+  EditProductWithImage(id: number, formData: FormData): Observable<any> {
+    return this.myClinet.put(`${this.URL}/${id}`, formData,{ withCredentials: true });
   }
 
   DeleteProduct(id: number): Observable<any> {
@@ -48,4 +56,6 @@ export class ProductsService {
   GetSubCategoryById(id:number):Observable<subcategory>{
     return this.myClinet.get<subcategory>(`${this.URL}/GetSubCategoryById/${id}`,{withCredentials:true})
   }
+
+
 }

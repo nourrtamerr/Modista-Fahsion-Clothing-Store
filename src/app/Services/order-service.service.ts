@@ -42,7 +42,7 @@ export class OrderServiceService {
 
 
 confirmorderstripe(billdetails: BillingDetails): Observable<url> {
-  const successurl = "https://clothing-store-last.vercel.app/success";  // Success URL
+  const successurl = "https://modistaclothingstore.vercel.app/success";  // Success URL
   const urlWithParams = `${this.confirmorderurl}?successurl=${encodeURIComponent(successurl)}`;  // Encode the URL parameter
 
   return this.myclient.post<url>(urlWithParams, billdetails, { withCredentials: true }).pipe(
@@ -70,7 +70,7 @@ getOrders(): Observable<expandableOrders> {
 
 
 getAllOrders(): Observable<expandableOrders> {
-  return this.myclient.get<Orders>("https://lastclothinghabashi.runasp.net/api/Order/All", { withCredentials: true }).pipe(
+  return this.myclient.get<Orders>("https://modistafashion.runasp.net/api/Order/All", { withCredentials: true }).pipe(
     map(orders => orders.map(cart => ({
       ...cart,            
       IsExpanded: false   

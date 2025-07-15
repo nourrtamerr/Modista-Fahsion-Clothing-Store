@@ -24,6 +24,10 @@
             <td>{{ product.name }}</td>
             <td>
               <img [src]="'/Images/' + product?.imageUrl" alt="Product Image"  style="width: 40px; height: 40px; object-fit: cover; border: 1px solid #eee;" />
+            
+              
+       <!-- alt="Product Image" 
+       style="width: 40px; height: 40px; object-fit: cover; border: 1px solid #eee;" /> -->
             </td>
           <td>{{ product.price | currency }}</td>
           <td>{{ getCatName(product.categoryid) || '-' }}</td>
@@ -42,32 +46,6 @@
   </div>
 </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <!-- Product Modal (Create/Edit) -->
 <div class="modal fade" id="productModal" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -80,15 +58,22 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
         <div class="modal-body">
-          <!-- All fields except id -->
-          <div class="mb-3">
+          <!-- Code field: only show in edit mode, readonly -->
+          <div class="mb-3" *ngIf="modalMode === 'edit'">
             <label class="form-label">Code</label>
-            <input [(ngModel)]="modalProduct.code" name="code" class="form-control" required>
+            <input [value]="modalProduct.code" class="form-control" readonly>
           </div>
+          <!-- Name -->
           <div class="mb-3">
             <label class="form-label">Name</label>
             <input [(ngModel)]="modalProduct.name" name="name" class="form-control" required>
           </div>
+
+          <div class="mb-3">
+            <label class="form-label">Description</label>
+            <textarea [(ngModel)]="modalProduct.description" name="description" class="form-control" required></textarea>
+          </div>
+
           <div class="mb-3">
             <label class="form-label">Price</label>
             <input [(ngModel)]="modalProduct.price" name="price" type="number" class="form-control" required>
@@ -99,28 +84,25 @@
               <option *ngFor="let cat of categories" [value]="cat.id">{{cat.name}}</option>
             </select>
           </div>
-
           <div class="mb-3">
             <label class="form-label">SubCategory</label>
             <select [(ngModel)]="modalProduct.subcategoryid" name="subcategoryid" class="form-control" required>
               <option *ngFor="let subcat of matchedSubcat" [value]="subcat.id">{{subcat.name}}</option>
             </select>
           </div>
-
           <div class="mb-3">
             <label class="form-label">Stock</label>
             <input [(ngModel)]="modalProduct.stock" name="stock" type="number" class="form-control" required>
           </div>
+          <!-- Single image input for all images -->
           <div class="mb-3">
-            <label class="form-label">Main Image</label>
-            <input type="file" (change)="onImageChange($event, 'main')" class="form-control">
-            <img *ngIf="modalProduct.imageUrl" [src]="modalProduct.imageUrl" alt="Main Image" style="width:60px; margin-top:8px;">
-          </div>
-          <div class="mb-3">
-            <label class="form-label">Additional Images</label>
-            <input type="file" (change)="onImageChange($event, 'additional')" class="form-control" multiple>
+            <label class="form-label">Images</label>
+            <input type="file" (change)="onImagesChange($event)" class="form-control" multiple>
             <div class="d-flex flex-wrap mt-2">
-              <img *ngFor="let img of modalProduct.productAdditionalImages" [src]="img" alt="Additional" style="width:40px; margin-right:5px;">
+              <img *ngIf="modalProduct.imageUrl" [src]="modalProduct.imageUrl" alt="Main Image" style="width:60px; margin-top:8px; margin-right:8px;">
+              <!-- <img *ngFor="let img of modalProduct.productAdditionalImages" [src]="'/Images/' + modalProduct.imageUrl" alt="Additional" style="width:40px; margin-right:5px;"> -->
+              <img *ngFor="let img of modalProduct.productAdditionalImages" [src]="'/Images/' + img" alt="Additional" style="width:40px; margin-right:5px;">
+
             </div>
           </div>
         </div>
@@ -145,4 +127,8 @@
       </div>
     </div>
   </div>
+</div>
+<!-- Toast placeholder -->
+<div aria-live="polite" aria-atomic="true" class="position-fixed bottom-0 end-0 p-3" style="z-index: 9999">
+  <div id="toast-container"></div>
 </div>

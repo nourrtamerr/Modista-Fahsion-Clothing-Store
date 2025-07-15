@@ -1,0 +1,71 @@
+<div class="admin-orders-container">
+  <div class="admin-orders-header">
+    <h1>Orders</h1>
+  </div>
+
+  <table *ngIf="!loading && !error && orders.length > 0" class="table table-hover align-middle shadow-sm rounded">
+    <thead class="table-light">
+      <tr>
+        <th>Code</th>
+        <th>Date</th>
+        <th>Total Amount</th>
+        <th>Method</th>
+        <th>Billing Address</th>
+        <th>Stripe Details</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngFor="let order of orders">
+        <tr>
+          <td>{{ order.Id }}</td>
+          <td>{{ order.OrderDate | date:'short' }}</td>
+          <td>{{ order.TotalAmount | currency }}</td>
+          <td>{{ order.method }}</td>
+          <td>{{ order.BillignAddress }}</td>
+          <td>{{ order.stripedetails }}</td>
+          <td>
+            <button (click)="showDetails(order.Id)" class="details-btn" title="Show Details">
+              <i class="fas" [ngClass]="selectedOrderId !== order.Id ? 'fa-eye' : 'fa-times'"></i>
+            </button>
+          </td>
+        </tr>
+        <tr *ngIf="selectedOrderId === order.Id">
+          <td colspan="7">
+            <div class="order-details">
+              <h3>Order Items</h3>
+              <table class="order-items-table">
+                <thead>
+                  <tr>
+                    <th>Item ID</th>
+                    <th>Name</th>
+                    <th>Image</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let item of order.OrderItems">
+                    <td>{{ item.Id }}</td>
+                    <td>{{ item.Name }}</td>
+                    <td>
+                      <img *ngIf="item.ImageUrl" [src]="item.ImageUrl" alt="{{ item.Name }}" />
+                    </td>
+                    <td>{{ item.quantity }}</td>
+                    <td>{{ item.Price | currency }}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && !error && orders.length === 0">
+    No orders found.
+  </div>
+  <div *ngIf="loading">Loading orders...</div>
+  <div *ngIf="error">{{ error }}</div>
+</div>

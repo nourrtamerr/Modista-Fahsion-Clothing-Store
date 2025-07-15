@@ -80,7 +80,6 @@
           </div>
         </div>
       </nav>
-    }
 
 
 
@@ -91,7 +90,7 @@
    
     
 
-    @if(!isAdmin()){
+   
     <footer class="footer ">
         <div class="container">
             <div class="row">
@@ -141,6 +140,13 @@
         </div>
     </footer>
   }
+
+  @else {
+
+    <app-dash-board></app-dash-board>
+  <!-- <router-outlet></router-outlet> -->
+  }
+  
     
     
     

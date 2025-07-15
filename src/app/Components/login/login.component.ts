@@ -66,7 +66,7 @@ login(){
         console.log('form submitted',str);
         if ( str.status=== 200) {
           // Wait for the refreshed auth status, then navigate based on role
-          this.userAuthService.refreshAuthStatus();
+          // this.userAuthService.refreshAuthStatus();
           const sub = this.userAuthService.authStatus$.subscribe(user => {
             if(user && user.isAuthenticated) {
               if(user.role === 'Admin') {
