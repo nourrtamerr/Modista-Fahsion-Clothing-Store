@@ -11,6 +11,8 @@ export interface Cart {
     billignAddress: string
     stripedetails: string
     orderItems: OrderItem[] 
+    firstName:string
+    lastName:string
   }
   
   export interface CartWithExpandable extends Cart {
@@ -39,7 +41,7 @@ export interface Login {
   rememberMe: boolean
 }
 export enum PaymentMethod {
-  OnDelivery = 0,
+  CashOnDelivery = 0,
   CreditCard =1,
   Stripe = 2
 }

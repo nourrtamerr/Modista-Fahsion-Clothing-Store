@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { OrderServiceService } from '../../../Services/order-service.service';
+import { PaymentMethod } from '../../../Models/cart';
 
 @Component({
   selector: 'app-admin-orders',
@@ -32,5 +33,9 @@ export class AdminOrdersComponent implements OnInit {
 
   showDetails(orderId: number) {
     this.selectedOrderId = this.selectedOrderId === orderId ? null : orderId;
+  }
+
+  getPaymentMethodName(method: number): string {
+    return PaymentMethod[method];
   }
 }

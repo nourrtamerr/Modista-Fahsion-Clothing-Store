@@ -147,7 +147,7 @@ export class CheckOutComponent {
           switch(this.paymentMethod){
             case "OnDelivery":
               this.mybilldetails=this.billingForm.value;
-              this.mybilldetails.method=PaymentMethod.OnDelivery;
+              this.mybilldetails.method=PaymentMethod.CashOnDelivery;
               this.cartservice.confirmorder(this.mybilldetails).subscribe({
                 next:(data) => {
                   console.log(this.order);

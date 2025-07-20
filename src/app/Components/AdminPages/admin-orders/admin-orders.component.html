@@ -8,22 +8,24 @@
       <tr>
         <th>Code</th>
         <th>Date</th>
+        <th>Customer</th>
         <th>Total Amount</th>
-        <th>Method</th>
-        <th>Billing Address</th>
-        <th>Stripe Details</th>
+        <th>Payment Method</th>
+        <!-- <th>Billing Address</th> -->
+        <!-- <th>Stripe Details</th> -->
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <ng-container *ngFor="let order of orders">
         <tr>
-          <td>{{ order.Id }}</td>
-          <td>{{ order.OrderDate | date:'short' }}</td>
-          <td>{{ order.TotalAmount | currency }}</td>
-          <td>{{ order.method }}</td>
-          <td>{{ order.BillignAddress }}</td>
-          <td>{{ order.stripedetails }}</td>
+          <td>{{ order.id }}</td>
+          <td>{{ order.orderDate | date:'short' }}</td>
+          <td>{{ order.firstName + ' ' + order.lastName  }}</td>         
+          <td>{{ order.totalAmount | currency }}</td>
+          <td>{{ getPaymentMethodName(order.method) }}</td>
+          <!-- <td>{{ order.billignAddress }}</td> -->
+          <!-- <td>{{ order.stripedetails }}</td> -->
           <td>
             <button (click)="showDetails(order.Id)" class="details-btn" title="Show Details">
               <i class="fas" [ngClass]="selectedOrderId !== order.Id ? 'fa-eye' : 'fa-times'"></i>
