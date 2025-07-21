@@ -25,5 +25,6 @@
   .sidebar li.active, .sidebar li:hover {
     background: #e0e0e0;
     /* color: #6c63ff; */
-    color: #e53637;
+    /* color: #e53637; */
+    color:#0d6efd
   }

@@ -27,9 +27,14 @@
           <!-- <td>{{ order.billignAddress }}</td> -->
           <!-- <td>{{ order.stripedetails }}</td> -->
           <td>
-            <button (click)="showDetails(order.Id)" class="details-btn" title="Show Details">
-              <i class="fas" [ngClass]="selectedOrderId !== order.Id ? 'fa-eye' : 'fa-times'"></i>
+            <button (click)="showDetails(order.Id)"  class="btn btn-sm text-info me-2" title="Show Details">
+              <i class="fas fa-eye" [ngClass]="selectedOrderId !== order.Id ? 'fa-eye' : 'fa-times'"></i>
             </button>
+            
+             
+              <button class="btn btn-sm text-warning me-2" ><i class="fas fa-edit"></i></button>
+              <button class="btn btn-sm text-danger " ><i class="fas fa-trash"></i></button>
+           
           </td>
         </tr>
         <tr *ngIf="selectedOrderId === order.Id">

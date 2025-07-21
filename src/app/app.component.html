@@ -61,26 +61,55 @@
               </li>
             }
             @else {
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a routerLinkActive="active-link" class="nav-link" routerLink="/orders">
                   <i class="fa-solid fa-bag-shopping" style="font-size: 1.3rem;color:black"></i>
                 </a>
-              </li>
+              </li> -->
+
+
               <li class="nav-item">
-                <a routerLinkActive="active-link" routerLink="/wishlist" class="nav-link" >
+                <a routerLinkActive="active-link"  routerLink="/wishlist" title="Wishlist" class="nav-link" >
                   <i  class="fa-regular fa-heart" style="font-size: 1.3rem;color:black"></i>
                 </a>
               </li>
+
+
               <li class="nav-item">
-                <a routerLinkActive="active-link" class="nav-link" routerLink="/cart">
+                <a routerLinkActive="active-link" class="nav-link" title="Shopping Cart" routerLink="/cart">
                   <i class="fa-solid fa-cart-shopping" style="font-size: 1.3rem;color:black"></i>
                 </a>
               </li>
-              <li class="nav-item font color-black">
+
+
+              <div class="dropdown user-dropdown">
+                <a class="nav-link dropdown-toggle d-flex align-items-center" title="My Account" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa-solid fa-user" style="font-size: 1.3rem;color:black"></i>
+                </a>
+
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                  
+                  <li>
+                    <a class="dropdown-item d-flex align-items-center"  routerLink="/orders">
+                      <i class="fa-solid fa-bag-shopping me-2"></i> My Orders
+                    </a>
+                  </li>
+
+                  <li>
+                    <button class="dropdown-item d-flex align-items-center" (click)="logout()">
+                      <i class="fa-solid fa-right-from-bracket me-2"></i> Logout
+                    </button>
+                  </li>
+                </ul>
+
+              </div>
+
+
+              <!-- <li class="nav-item font color-black">
                 <div>
                 <a class="nav-link" routerLink="/home"  style="color: black;" (click)="logout()">Logout</a>
               </div>
-              </li>
+              </li> -->
             }
             
           </ul>

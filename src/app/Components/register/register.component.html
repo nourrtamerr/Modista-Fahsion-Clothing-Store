@@ -75,10 +75,33 @@
           </div>
         </div>
       </div>
+
       <button type="submit" class="btn btn-dark fw-medium px-5 py-2 rounded-4 w-100 mt-5" [disabled]="registerForm.invalid">Register</button>
-      <div class="text-center mt-3">
-        <span>Do you have an account? <a routerLink="/login">Log In</a></span>
+      <p class="text-center mt-4">Or Continue With</p>
+
+
+      <div class="d-flex flex-column justify-content-center align-items-center">
+        <div>
+          <span style="cursor: pointer; margin-right: 10px;">
+  
+            <i class="fab fa-google fa-lg text-dark fs-3" (click)="googlelogin()"></i>
+  
+        </span>
+        <span style="cursor: pointer;" class="ms-3">
+          <i class="fab fa-facebook fa-lg text-dark fs-3" (click)="facebooklogin()"></i>
+          
+  
+        </span>
+        </div>
+      
+        <p class="mt-3">Already have an account? <a routerLink='/register' >Login Here!</a></p>
       </div>
+
+      <!-- <div class="text-center mt-3">
+        <span>Do you have an account? <a routerLink="/login">Log In</a></span>
+      </div> -->
+
+
       <div *ngIf="err" class="alert alert-danger mt-3">{{ err }}</div>
     </form>
   </div>
