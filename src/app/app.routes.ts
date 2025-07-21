@@ -16,6 +16,8 @@ import { AdminDashboardComponent } from './Components/AdminPages/admin-dashboard
 import { AdminOrdersComponent } from './Components/AdminPages/admin-orders/admin-orders.component';
 import { AdminCustomersComponent } from './Components/AdminPages/admin-customers/admin-customers.component';
 import { AdminCreateCategoryComponent } from './Components/AdminPages/admin-create-category/admin-create-category.component';
+import { AdminCategoriesComponent } from './Components/AdminPages/admin-categories/admin-categories.component';
+import { AdminSubCategoriesComponent } from './Components/AdminPages/admin-sub-categories/admin-sub-categories.component';
 
 export const routes: Routes = [
   { path: 'register',component:RegisterComponent},
@@ -46,6 +48,8 @@ export const routes: Routes = [
       {path:'products', component:AdminProductsComponent},
       {path:'orders', component:AdminOrdersComponent},
       {path:'customers', component:AdminCustomersComponent},
+      {path:'categories', component:AdminCategoriesComponent},
+      {path:'subcategories', component:AdminSubCategoriesComponent},
       {path:'category/create', component:AdminCreateCategoryComponent},
 
 
