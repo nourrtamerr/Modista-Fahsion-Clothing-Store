@@ -69,4 +69,10 @@ export class UserAuthService {
     const url = `https://modistafashion.runasp.net/api/Account/External-login?provider=${encodeURIComponent(provider)}&returnUrl=${encodeURIComponent(returnUrl)}`;
     window.location.href = url;
   }
+
+
+  getALlUsers():Observable<registerDTO[]>{
+    return this.http.get<registerDTO[]>("https://modistafashion.runasp.net/api/Account/all-users", { withCredentials: true })
+  }
+
 }

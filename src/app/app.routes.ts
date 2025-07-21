@@ -14,6 +14,7 @@ import { DashBoardComponent } from './Components/dash-board/dash-board.component
 import { AdminProductsComponent } from './Components/AdminPages/admin-products/admin-products.component';
 import { AdminDashboardComponent } from './Components/AdminPages/admin-dashboard/admin-dashboard.component';
 import { AdminOrdersComponent } from './Components/AdminPages/admin-orders/admin-orders.component';
+import { AdminCustomersComponent } from './Components/AdminPages/admin-customers/admin-customers.component';
 
 export const routes: Routes = [
   { path: 'register',component:RegisterComponent},
@@ -43,6 +44,7 @@ export const routes: Routes = [
       {path:'dashboard', component:AdminDashboardComponent},
       {path:'products', component:AdminProductsComponent},
       {path:'orders', component:AdminOrdersComponent},
+      {path:'customers', component:AdminCustomersComponent},
 
     ]
   }
