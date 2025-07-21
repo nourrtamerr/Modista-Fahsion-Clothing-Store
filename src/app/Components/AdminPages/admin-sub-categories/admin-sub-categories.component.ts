@@ -14,7 +14,7 @@ export class AdminSubCategoriesComponent implements OnInit {
 
   constructor(private productService:ProductsService){}
 
-  subcategories:any
+  subcategories:any[]=[]
   categoryMap: { [key: number]: string } = {};
 
   ngOnInit(): void {

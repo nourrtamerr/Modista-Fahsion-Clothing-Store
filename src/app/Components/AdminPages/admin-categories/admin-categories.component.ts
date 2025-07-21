@@ -14,7 +14,7 @@ export class AdminCategoriesComponent implements OnInit{
 
   constructor(private productService:ProductsService){}
 
-  categories:any
+  categories:any[]=[]
 
   ngOnInit(): void {
     this.productService.getCategories().subscribe({
