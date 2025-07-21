@@ -1,0 +1,28 @@
+<div class="admin-orders-container">
+    <div class="admin-orders-header">
+      <h1>Subcategories</h1>
+    </div>
+    <table *ngIf="subcategories.length > 0" class="table table-hover align-middle shadow-sm rounded">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Category ID</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let sub of subcategories">
+          <td>{{ sub.id }}</td>
+          <td>{{ sub.name }}</td>
+          <td>{{ sub.categoryId }}</td>
+          <td>
+            <button class="btn btn-sm text-info me-2" ><i class="fas fa-eye"></i></button>
+            <a class="btn btn-sm text-warning me-2" [routerLink]="['/admin/subcategory/edit',sub.id]"><i class="fas fa-edit"></i></a>
+            <button class="btn btn-sm text-danger " ><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="subcategories.length === 0">No subcategories found.</div>
+  </div>

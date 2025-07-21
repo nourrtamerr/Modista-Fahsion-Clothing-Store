@@ -44,6 +44,10 @@ export class ProductsService {
     return this.myClinet.get(`${this.URL}/Categories`, {withCredentials:true})
   }
 
+  getSubCategories():Observable<any>{
+    return this.myClinet.get(`${this.URL}/SubCategories`, {withCredentials:true})
+  }
+
   getProdById(code:number){
     return this.myClinet.get(`${this.URL}/${code}`,{withCredentials:true})
   }
@@ -55,6 +59,15 @@ export class ProductsService {
 
   GetSubCategoryById(id:number):Observable<subcategory>{
     return this.myClinet.get<subcategory>(`${this.URL}/GetSubCategoryById/${id}`,{withCredentials:true})
+  }
+
+
+  CreateCategory(CatName:string):Observable<any>{
+    return this.myClinet.post<any>(`${this.URL}/CreateCategory`,CatName,{withCredentials:true})
+  }
+
+  EditSubCategory(SubCatId:number, newSubCat:subcategory):Observable<any>{
+    return this.myClinet.put<any>(`${this.URL}/EditSubCategory/${SubCatId}`,newSubCat,{withCredentials:true})
   }
 
 

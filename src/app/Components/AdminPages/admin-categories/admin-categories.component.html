@@ -1,0 +1,28 @@
+<div class="admin-orders-container">
+    <div class="admin-orders-header">
+      <h1>Categories</h1>
+      <a class="btn btn-primary" routerLink="/admin/category/create"><i class="fas fa-plus"></i> Create New Product</a>
+
+    </div>
+    <table *ngIf="categories.length > 0" class="table table-hover align-middle shadow-sm rounded">
+      <thead class="table-light">
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cat of categories">
+          <td>{{ cat.id }}</td>
+          <td>{{ cat.name }}</td>
+          <td>
+            <button class="btn btn-sm text-info me-2" ><i class="fas fa-eye"></i></button>
+            <button class="btn btn-sm text-warning me-2" ><i class="fas fa-edit"></i></button>
+            <button class="btn btn-sm text-danger " ><i class="fas fa-trash"></i></button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div *ngIf="categories.length === 0">No categories found.</div>
+  </div>

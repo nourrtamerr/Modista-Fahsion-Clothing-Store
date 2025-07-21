@@ -27,6 +27,11 @@ export class AppComponent  implements OnInit{
       next: (value) => {
         this.islogged = value;
         console.log("AppComponent Auth Status:", this.islogged);
+      
+
+        if (this.isAdmin() && (this.router.url === '/' || this.router.url === '/home')) {
+          this.router.navigate(['/admin/dashboard']);
+        }
       }
     });
 

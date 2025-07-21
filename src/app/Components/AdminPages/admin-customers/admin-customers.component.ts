@@ -2,10 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../../Services/user.service';
 import { registerDTO } from '../../../Models/user/user';
 import { UserAuthService } from '../../../Services/User/user-auth.service';
+import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-admin-customers',
-  imports: [],
+  imports: [CommonModule, RouterModule],
   templateUrl: './admin-customers.component.html',
   styleUrl: './admin-customers.component.css'
 })

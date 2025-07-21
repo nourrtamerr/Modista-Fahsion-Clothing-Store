@@ -15,6 +15,7 @@ import { AdminProductsComponent } from './Components/AdminPages/admin-products/a
 import { AdminDashboardComponent } from './Components/AdminPages/admin-dashboard/admin-dashboard.component';
 import { AdminOrdersComponent } from './Components/AdminPages/admin-orders/admin-orders.component';
 import { AdminCustomersComponent } from './Components/AdminPages/admin-customers/admin-customers.component';
+import { AdminCreateCategoryComponent } from './Components/AdminPages/admin-create-category/admin-create-category.component';
 
 export const routes: Routes = [
   { path: 'register',component:RegisterComponent},
@@ -45,6 +46,8 @@ export const routes: Routes = [
       {path:'products', component:AdminProductsComponent},
       {path:'orders', component:AdminOrdersComponent},
       {path:'customers', component:AdminCustomersComponent},
+      {path:'category/create', component:AdminCreateCategoryComponent},
+
 
     ]
   }
