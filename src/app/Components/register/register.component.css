@@ -1,0 +1,26 @@
+.register-container {
+    /* min-height: 100vh; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* background: #f8f9fa; */
+    padding: 60px;
+  }
+  
+  .register-card {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 4px 32px rgba(0,0,0,0.08);
+    width: 100%;
+    max-width: 50vw;
+  }
+  
+  .form-label {
+    font-weight: 500;
+  }
+  
+  .btn-primary {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
