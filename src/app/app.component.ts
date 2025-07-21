@@ -46,8 +46,7 @@ export class AppComponent  implements OnInit{
   })
   }
 
-  isAdmin(): boolean {
-    this.userAuthService.refreshAuthStatus();
+  isAdmin(): boolean {   
     return this.islogged?.role === 'Admin';
   }
   }
