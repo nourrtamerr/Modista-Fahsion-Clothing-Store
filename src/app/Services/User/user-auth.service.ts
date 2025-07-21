@@ -75,4 +75,8 @@ export class UserAuthService {
     return this.http.get<registerDTO[]>("https://modistafashion.runasp.net/api/Account/all-users", { withCredentials: true })
   }
 
+  getCustomers():Observable<registerDTO[]>{
+    return this.http.get<registerDTO[]>("https://modistafashion.runasp.net/api/Account/GetCustomers", { withCredentials: true })
+  }
+
 }

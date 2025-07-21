@@ -19,7 +19,7 @@ export class AdminCustomersComponent implements OnInit {
   customers: registerDTO[] = []
 
   ngOnInit(): void {
-    this.customerService.getALlUsers().subscribe({
+    this.customerService.getCustomers().subscribe({
       next:(data)=>{this.customers=data; console.log(data)},
       error:(err)=> console.log(err)
     })
