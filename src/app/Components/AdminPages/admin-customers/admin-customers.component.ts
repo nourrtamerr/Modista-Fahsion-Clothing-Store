@@ -18,7 +18,7 @@ export class AdminCustomersComponent implements OnInit {
 
   ngOnInit(): void {
     this.customerService.getALlUsers().subscribe({
-      next:(data)=>this.customers=data,
+      next:(data)=>{this.customers=data; console.log(data)},
       error:(err)=> console.log(err)
     })
   }

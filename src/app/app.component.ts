@@ -47,6 +47,7 @@ export class AppComponent  implements OnInit{
   }
 
   isAdmin(): boolean {
+    this.userAuthService.refreshAuthStatus();
     return this.islogged?.role === 'Admin';
   }
   }
