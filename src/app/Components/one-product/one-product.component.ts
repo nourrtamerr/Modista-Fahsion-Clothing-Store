@@ -154,7 +154,19 @@ export class OneProductComponent implements OnInit {
           this.removedFromWishlist.emit(ProdId)
  
         },
-        error: (err) => console.log(err)
+        error: (err) => {
+          console.error('Error adding to cart:', err);
+          if (err.status === 400) {
+            this.alertService.showAlert('No enough stock available', 'error');
+          } else if (err.status === 200) {
+            this.alertService.showAlert('Product added to cart', 'success');
+          }
+          else if (err.status === 401) {
+            this.alertService.showAlert('Login Required', 'warning');
+          } else {
+            this.alertService.showAlert('Error adding item to cart', 'error');
+          }
+        }
       });
     } else {
       this.wishListService.addToWishlist(ProdId).subscribe({
