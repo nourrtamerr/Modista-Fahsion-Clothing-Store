@@ -10,6 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { CartService } from '../../Services/cart.service';
 import { AddToCart } from '../../Models/AddToCart';
 import { AlertService } from '../../Services/alert.service';
+import { OneProductComponent } from "../one-product/one-product.component";
 // import { WishlistService } from '../Services/wishlist.service';
 
 // @Injectable({
@@ -19,7 +20,7 @@ import { AlertService } from '../../Services/alert.service';
 @Component({
   selector: 'app-wishlist',
   standalone: true,
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, OneProductComponent],
   templateUrl: './wishlist.component.html',
   styleUrl: './wishlist.component.css'
 })
@@ -114,5 +115,9 @@ AddToCart(code:number){
       console.error('Error while removing item:', error);
     }
   });
+}
+
+onRemovedFromWishlist(prodId: number) {
+  this.wishlistItems = this.wishlistItems.filter(p => p.code !== prodId);
 }
 }

@@ -13,10 +13,12 @@ import { AlertService } from '../../Services/alert.service';
       <div class="alert-box" 
            [class.success]="alertType === 'success'"
            [class.error]="alertType === 'error'"
+           [class.warning]="alertType === 'warning'"
            (click)="$event.stopPropagation()">
         <div class="alert-icon">
           <i *ngIf="alertType === 'success'" class="fas fa-check-circle"></i>
           <i *ngIf="alertType === 'error'" class="fas fa-times-circle"></i>
+          <i *ngIf="alertType === 'warning'" class="fa-solid fa-circle-exclamation"></i>
         </div>
         <div class="alert-message">{{ message }}</div>
       </div>
@@ -72,12 +74,19 @@ import { AlertService } from '../../Services/alert.service';
         color: #f44336;
       }
     }
+
+    .warning {
+      border-top: 4px solid #ff6700;
+      .alert-icon {
+        color: #ff6700;
+      }
+    }
   `]
 })
 export class AlertComponent implements OnInit {
   showAlert = false;
   message = '';
-  alertType: 'success' | 'error' = 'success';
+  alertType: 'success' | 'error' | 'warning'= 'success';
   private timeout: any;
 
   constructor(private alertService: AlertService) {}

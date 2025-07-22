@@ -41,12 +41,17 @@ export class ShoppingCartComponent implements OnInit{
   faBox = fas.faBox;            // for product
 faListOl = fas.faListOl;      // for quantity
 faMoneyBill = fas.faMoneyBill1;  // for total
+faPrice=fas.faTag;
   cart: Cart |null=null;
   error: string | null = null;
+
+
+  CartNumOfItems:number=0;
 
 constructor(private service:OrderServiceService,private orderitemserves:OrderitemService){}
 ngOnInit(): void {
   this.loaditems();
+ 
   console.log(this.cart);
 }
 
@@ -75,6 +80,8 @@ sortByQuantity(){
       this.sort=SortDirection.None;
     }
 }
+
+
 sortByTotal(){
   if(this.sort!=SortDirection.Total)
     {
@@ -90,6 +97,24 @@ sortByTotal(){
       
     }
 }
+
+sortByItemPrice(){
+  if(this.sort!=SortDirection.Total)
+    {
+      this.cart!.orderItems =[...this.cart?.orderItems.sort((a,b)=> {return (a.price) - (b.price )}) ||[]]
+ 
+      this.sort=SortDirection.Total
+    }
+    else
+    {
+      this.cart!.orderItems =[...this.cart?.orderItems.sort((a,b)=> {return (b.price ) - (a.price)})||[]]
+ 
+      this.sort=SortDirection.None;
+      
+    }
+}
+
+
 
 deleteItem(id:number)
 {
@@ -118,7 +143,9 @@ increaseQuantity(item: OrderItem): void {
     next: (updatedcart) => {
       // this.cart=updatedcart
       item.quantity++;
+      this.CartNumOfItems++;
       console.log('Item quantity increased successfully', updatedcart);
+      
     },
     error: (err) => {
  
@@ -137,7 +164,9 @@ decreaseQuantity(item: OrderItem): void {
     next: (updatedcart) => {
       // this.cart=updatedcart
       item.quantity--;
+      this.CartNumOfItems--;
       console.log('Item quantity decreased successfully', updatedcart);
+      
     },
     error: (err) => {
  
@@ -178,6 +207,13 @@ loaditems()
       this.cart=data;
       console.log(this.cart);
       this.error = null;
+      if(this.cart){
+
+        for(let i of this.cart.orderItems){
+          this.CartNumOfItems+= i.quantity
+        }
+      }
+      // this.calcItems();
     },
     error:(err)=>{
       if (err.status === 404) {
@@ -193,4 +229,13 @@ loaditems()
   }
   )
 }
+
+// calcItems(){
+//   if(this.cart){
+
+//     for(let i of this.cart.orderItems){
+//       this.CartNumOfItems= i.quantity
+//     }
+//   }
+// }
 }

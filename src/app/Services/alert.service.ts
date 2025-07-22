@@ -3,7 +3,7 @@ import { Subject } from 'rxjs';
 
 export interface AlertData {
   message: string;
-  type: 'success' | 'error';
+  type: 'success' | 'error'|'warning';
 }
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AlertService {
   private alertSubject = new Subject<AlertData>();
   alert$ = this.alertSubject.asObservable();
 
-  showAlert(message: string, type: 'success' | 'error') {
+  showAlert(message: string, type: 'success' | 'error'|'warning') {
     this.alertSubject.next({ message, type });
   }
 }

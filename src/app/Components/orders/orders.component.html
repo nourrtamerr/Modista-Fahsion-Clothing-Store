@@ -217,7 +217,7 @@
 
     <div class="card">
         <div class="card-header bg-white py-4">
-            <h5 class="mb-0" style="color: var(--primary-gray); letter-spacing: 1px;">Order History</h5>
+            <h5 class="mb-0" style="color: var(--primary-gray); letter-spacing: 1px;">Orders History</h5>
         </div>
         <div class="card-body p-0">
             <div class="table-responsive">
@@ -316,7 +316,8 @@
                                                             @if (order.method === PaymentMethod.Stripe) {
                                                                 <span class="payment-badge stripe">
                                                                     <fa-icon [icon]="faStripe" class="me-2"></fa-icon>
-                                                                    Session ID: {{order.stripedetails}}
+                                                                    <!-- Session ID: {{order.stripedetails}} -->
+                                                                     Paid with Stripe
                                                                 </span>
                                                             } @else if (order.method === PaymentMethod.CreditCard && order.stripedetails) {
                                                                 <span class="payment-badge credit-card">

@@ -88,7 +88,7 @@
 
 
 import { CommonModule } from '@angular/common';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,Output, EventEmitter } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { product, Size, Color } from '../../Models/product';
 import { WishlistService } from '../../Services/wishlist.service';
@@ -106,6 +106,9 @@ import { AlertService } from '../../Services/alert.service';
 })
 export class OneProductComponent implements OnInit {
   @Input() prodData!: product;
+
+
+  @Output() removedFromWishlist = new EventEmitter<number>();
   
   // Wishlist properties
   userWishList: any[] = [];
@@ -148,7 +151,8 @@ export class OneProductComponent implements OnInit {
       this.wishListService.removeFromWishlist(ProdId).subscribe({
         next: () => {
           this.isInWishList = false;
-          console.log('Product removed from wishlist');
+          this.removedFromWishlist.emit(ProdId)
+ 
         },
         error: (err) => console.log(err)
       });
@@ -162,6 +166,7 @@ export class OneProductComponent implements OnInit {
       });
     }
   }
+
 
 
   isSizeAvailable(size: number): boolean {
@@ -206,6 +211,9 @@ isColorAvailable(color: number): boolean {
           this.alertService.showAlert('No enough stock available', 'error');
         } else if (err.status === 200) {
           this.alertService.showAlert('Product added to cart', 'success');
+        }
+        else if (err.status === 401) {
+          this.alertService.showAlert('Please Login First', 'warning');
         } else {
           this.alertService.showAlert('Error adding item to cart', 'error');
         }
