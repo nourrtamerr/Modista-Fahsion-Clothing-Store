@@ -163,10 +163,15 @@
                           <tbody>
                               <tr *ngFor="let item of cart.orderItems">
                                   <td class="d-flex align-items-center gap-3">
-                                      <img [src]="'/Images/' + item.imageUrl" 
-                                          [alt]="item.name" 
-                                          class="img-fluid rounded"
-                                          style="width: 100px; height: 100px; object-fit: contain; object-position: center;">
+                                    <a [routerLink]="['/ProductDetails',item.id]" style="text-decoration: none;">
+
+                                        <img [src]="'/Images/' + item.imageUrl" 
+                                            [alt]="item.name" 
+                                            class="img-fluid rounded"
+                                            style="width: 100px; height: 100px; object-fit: contain; object-position: center;"
+                                            
+                                            >
+                                    </a>
                                       <div>
                                           <h6 class="text-muted mb-0">{{item.name}}</h6>
                                           <!-- <h5 class=" mb-0">${{item.price | number:'1.2-2'}}</h5> -->

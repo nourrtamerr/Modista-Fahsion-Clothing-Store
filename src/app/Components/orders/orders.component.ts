@@ -6,12 +6,13 @@ import *as fas from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { faStripe } from '@fortawesome/free-brands-svg-icons';
+import { RouterModule } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-orders',
-  imports: [CommonModule, FontAwesomeModule],
+  imports: [CommonModule, FontAwesomeModule,RouterModule],
   templateUrl: './orders.component.html',
   animations: [
     trigger('expandCollapse', [

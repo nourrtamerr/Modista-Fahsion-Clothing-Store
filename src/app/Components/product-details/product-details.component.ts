@@ -188,13 +188,13 @@ error: (err) => {
 AddToCart(productId: number, quantity: number): void {
   this.servise.AddToCart(productId, quantity).subscribe({
     next: (data) => {
-      this.toastr.success('Added to cart successfully', 'Success'); // ✅ Working now!
+      this.toastr.success('Added to cart successfully', 'Success'); 
       console.log('Product added to cart:', data);
       this.quantity=1;
     },
     error: (err) => {
       console.error('Error adding product to cart:', err); 
-      this.toastr.error('No Stock', 'Error'); // ✅ Working now!
+      this.toastr.error('No Stock', 'Error'); 
     }
   });
 }
