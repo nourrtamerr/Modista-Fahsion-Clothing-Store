@@ -211,6 +211,7 @@ export class ProductsComponent implements OnInit {
       this.pageNum = page;
 
       this.ApplyPagination();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
 
