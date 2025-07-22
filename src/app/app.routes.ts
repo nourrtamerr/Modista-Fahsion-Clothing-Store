@@ -27,7 +27,7 @@ export const routes: Routes = [
   {path: 'CheckOut/:id', component: CheckOutComponent},
   { path: 'success', component: PaymentSuccessComponent },
   { path : "ProductDetails/:id", component: ProductDetailsComponent },
-  {path:"home",component:HomeComponent,title:"Home"},
+  {path:"home",component:HomeComponent},
   { path:"",redirectTo:"home",pathMatch:"full"},
   {path:"products", component:ProductsComponent},
   {path:"wishlist", component:WishlistComponent},
