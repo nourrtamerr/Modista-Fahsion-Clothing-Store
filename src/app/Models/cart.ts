@@ -26,6 +26,7 @@ export interface Cart {
     imageUrl: string
     quantity: number
     price: number
+    productId:number
   }
   
   export enum SortDirection {
