@@ -163,7 +163,7 @@ export class CheckOutComponent {
           
           switch(this.paymentMethod){
             case "OnDelivery":
-              this.mybilldetails=this.billingForm.value;
+              this.mybilldetails=this.billingForm.getRawValue();
               this.mybilldetails.method=PaymentMethod.CashOnDelivery;
               this.cartservice.confirmorder(this.mybilldetails).subscribe({
                 next:(data) => {
