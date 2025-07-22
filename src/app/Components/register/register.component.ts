@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
     confirmPassword:'',
     rememberme:false
   };
+  successMessage: string | null = null;
   err:string | null=null;
   constructor(
     private fb: FormBuilder ,
@@ -78,8 +79,10 @@ export class RegisterComponent implements OnInit {
         next: (str) => {
           console.log('form submitted',str);
           if ( str.status=== 200) {
-            this.router.navigate(['/login']);
+            // this.router.navigate(['/login']);
+            this.successMessage = "Registration successful! Please check your email to confirm your account before logging in.";
             this.err=null;
+            this.registerForm.reset();
           }
         },
         error: (error) => {

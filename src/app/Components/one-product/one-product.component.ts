@@ -213,7 +213,7 @@ isColorAvailable(color: number): boolean {
           this.alertService.showAlert('Product added to cart', 'success');
         }
         else if (err.status === 401) {
-          this.alertService.showAlert('Please Login First', 'warning');
+          this.alertService.showAlert('Login Required', 'warning');
         } else {
           this.alertService.showAlert('Error adding item to cart', 'error');
         }

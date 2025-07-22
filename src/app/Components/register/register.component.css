@@ -24,3 +24,26 @@
     font-weight: 600;
     letter-spacing: 0.5px;
   }
+
+  .alert-info {
+    background-color: #eaf4fc;
+    color: #0c5460;
+    border-left: 6px solid #007bff;
+  }
+
+  .alert-danger {
+    background-color: #f8d7da;
+    color: #721c24;
+    border-left: 6px solid #dc3545;
+  }
+
+  .ex-icon{
+    cursor: pointer;
+    width:35px;
+    height: 35px
+  }
+
+  .ex-icon:hover{
+    width:37px;
+    height: 37px
+  }

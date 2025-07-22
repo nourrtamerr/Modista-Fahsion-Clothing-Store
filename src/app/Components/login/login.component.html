@@ -1,9 +1,17 @@
-@if(err != null||errorMessage!=null){
-  <div class="alert alert-danger">
-    {{ err?? errorMessage }}
-  </div>
-}
-<div class="container py-5" >
+
+<div class="mt-3" style="height: 6vh;">
+
+  @if(err != null||errorMessage!=null){
+    <div class="alert alert-danger d-flex justify-content-center mx-auto " style="width:20vw">
+  
+      {{ err?? errorMessage }}
+    </div>
+  }
+</div>
+
+
+
+<div class="container pb-5 my-4" >
   <form class="p-5 bg-white rounded-lg shadow-lg w-50 mx-auto" style="border-radius: 16px;" [formGroup]="LoginForm">
       <h3 class="text-center mb-5 text-dark fw-semibold">
           Login to Your Account
@@ -46,14 +54,15 @@
     </div>
     <div class="d-flex flex-column justify-content-center align-items-center">
       <div>
-        <span style="cursor: pointer; margin-right: 10px;">
+        <span >
 
-          <i class="fab fa-google fa-lg text-dark fs-3" (click)="googlelogin()"></i>
+          <!-- <i class="fab fa-google fa-lg text-dark fs-3" (click)="googlelogin()"></i> -->
+          <img src='/Images/g2-circle.png' class="ex-icon"  (click)="googlelogin()">
 
       </span>
-      <span style="cursor: pointer;" class="ms-3">
-        <i class="fab fa-facebook fa-lg text-dark fs-3" (click)="facebooklogin()"></i>
-        
+      <span  class="ms-4">
+        <!-- <i class="fab fa-facebook fa-lg text-dark fs-3" (click)="facebooklogin()"></i> -->
+        <img src='/Images/f-circle.png' class="ex-icon"  (click)="facebooklogin()">
 
       </span>
       </div>

@@ -1,0 +1,10 @@
+.ex-icon{
+    cursor: pointer;
+    width:35px;
+    height: 35px
+  }
+
+  .ex-icon:hover{
+    width:37px;
+    height: 37px
+  }

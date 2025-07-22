@@ -1,4 +1,17 @@
 
+
+  @if(err != null){
+    <div class="alert alert-danger d-flex justify-content-center mx-auto " style="width: 70%; max-width: 40%;">
+  
+      {{ err }}
+    </div>
+  }
+  <div *ngIf="successMessage" class="alert alert-info text-center mt-2 mx-auto shadow-sm rounded-3" style="width: 70%; max-width: 40%;">
+    <i class="fas fa-info-circle me-2"></i> {{ successMessage }}
+  </div>
+
+
+
 <div class="register-container">
   <div class="register-card">
     <h2 class="text-center mb-4">Create an Account</h2>
@@ -82,14 +95,15 @@
 
       <div class="d-flex flex-column justify-content-center align-items-center">
         <div>
-          <span style="cursor: pointer; margin-right: 10px;">
+          <span >
   
-            <i class="fab fa-google fa-lg text-dark fs-3" (click)="googlelogin()"></i>
-  
+            <!-- <i class="fab fa-google  fs-3" style="color: rgba(214, 29, 29, 0.963);padding: 5px;border-radius:50%" (click)="googlelogin()"></i> -->
+          <img src='/Images/g2-circle.png' class="ex-icon"  (click)="googlelogin()">
+            
         </span>
-        <span style="cursor: pointer;" class="ms-3">
-          <i class="fab fa-facebook fa-lg text-dark fs-3" (click)="facebooklogin()"></i>
-          
+        <span  class="ms-4">
+          <!-- <i class="fab fa-facebook-f  fs-3 " style="color: rgb(36, 80, 201);padding: 5px;border-radius:50%" (click)="facebooklogin()"></i> -->
+          <img src='/Images/f-circle.png' class="ex-icon"  (click)="facebooklogin()">
   
         </span>
         </div>
@@ -102,7 +116,11 @@
       </div> -->
 
 
-      <div *ngIf="err" class="alert alert-danger mt-3">{{ err }}</div>
+      <!-- <div *ngIf="err" class="alert alert-danger mt-3">{{ err }}</div> -->
+      
     </form>
+
+    
   </div>
+  
 </div>
