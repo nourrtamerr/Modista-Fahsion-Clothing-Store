@@ -31,11 +31,15 @@
       <input type="password" class="form-control border-0 shadow-sm" formControlName="password" placeholder="Enter your password">
       @if (LoginForm.get('password')?.hasError('required') && LoginForm.get('password')?.touched) {
         <div class="text-danger mt-1 small">password is required.</div>
-      } @else if (LoginForm.get('password')?.hasError('minlength')) {
+      } 
+      <!-- @else if (LoginForm.get('password')?.hasError('minlength')) {
         <div class="text-danger mt-1 small">password must be at least 8 characters long.</div>
-      } @else if (LoginForm.get('password')?.hasError('pattern')) {
+      } 
+      @else if (LoginForm.get('password')?.hasError('pattern')) {
         <div class="text-danger mt-1 small">password must include at least one uppercase letter, one lowercase letter, one number, and one special character.</div>
-      }
+      } -->
+
+
     </div>
 
     <div class=" mb-4">
