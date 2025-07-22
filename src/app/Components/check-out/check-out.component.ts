@@ -88,7 +88,7 @@ export class CheckOutComponent {
 
 
       this.billingForm = this.fb.group({
-        country: [{ value: 'Egypt', disabled: true }, [Validators.required]],
+        country: [{ value: 'Egypt', disabled: true }],
         streetAddress: ['', [Validators.required, Validators.minLength(5)]],
         apartment: [''],
         city: ['', [Validators.required, Validators.minLength(2)]],
