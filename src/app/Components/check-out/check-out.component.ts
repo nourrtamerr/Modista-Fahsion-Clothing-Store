@@ -74,8 +74,21 @@ export class CheckOutComponent {
       this.id = +params['id'];  
       console.log('Checkout ID:', this.id);  });
       
+      // this.billingForm = this.fb.group({
+      //   country: ['', [Validators.required, Validators.minLength(3)]],
+      //   streetAddress: ['', [Validators.required, Validators.minLength(5)]],
+      //   apartment: [''],
+      //   city: ['', [Validators.required, Validators.minLength(2)]],
+      //   state: ['', [Validators.required, Validators.minLength(2)]],
+      //   postcode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
+      //   addNote: [false],
+      //   orderNotes: ['', [Validators.maxLength(500)]],
+        
+      // });
+
+
       this.billingForm = this.fb.group({
-        country: ['', [Validators.required, Validators.minLength(3)]],
+        country: [{ value: 'Egypt', disabled: true }, [Validators.required]],
         streetAddress: ['', [Validators.required, Validators.minLength(5)]],
         apartment: [''],
         city: ['', [Validators.required, Validators.minLength(2)]],
@@ -83,8 +96,10 @@ export class CheckOutComponent {
         postcode: ['', [Validators.required, Validators.pattern('^[0-9]{5}$')]],
         addNote: [false],
         orderNotes: ['', [Validators.maxLength(500)]],
-        
       });
+
+
+
       this.paymentForm=this.fb.group({
         cardNumber: [''],
         cardExpiry: [''],

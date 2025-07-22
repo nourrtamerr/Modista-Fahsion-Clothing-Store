@@ -142,7 +142,7 @@
             <form [formGroup]="billingForm" (ngSubmit)="onSubmit()">
 
                 
-                <div class="mb-3">
+                <!-- <div class="mb-3">
                     <label class="form-label">Country*</label>
                     <input type="text" class="form-control" 
                            [class.is-invalid]="billingForm.get('country')?.invalid && billingForm.get('country')?.touched"
@@ -151,7 +151,17 @@
                         <span *ngIf="billingForm.get('country')?.errors?.['required']">{{validationMessages.country.required}}</span>
                         <span *ngIf="billingForm.get('country')?.errors?.['minlength']">{{validationMessages.country.minlength}}</span>
                     </div>
-                </div>
+                </div> -->
+
+
+
+                <div class="mb-3">
+                    <label class="form-label">Country*</label>
+                    <input type="text" class="form-control" value="Egypt" disabled>
+                  </div>
+
+
+
                 
                 <div class="mb-3">
                     <label class="form-label">Address*</label>
